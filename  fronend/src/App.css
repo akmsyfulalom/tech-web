@@ -1,0 +1,10 @@
+.App{
+  font-family:'arial'
+}
+#smtab:hover{
+  cursor: pointer;
+  box-shadow: 1px 1px #ababab;
+}
+#errorLabel{
+  color:red
+}
