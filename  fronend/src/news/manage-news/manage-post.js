@@ -123,7 +123,7 @@ const ManagePost = () => {
                     <tbody>
                         {newsData.map(newsItem => (
                             <tr key={newsItem._id}>
-                                <td className="align-middle"><img src={newsItem.imageUrl} alt="News" style={{ maxWidth: '100px' }} /></td>
+                                <td className="align-middle"><img src={newsItem?.image}alt="News" style={{ maxWidth: '100px' }} /></td>
                                 <td className="align-middle" style={{ maxWidth: '500px' }}>{newsItem.title}</td>
                                 <td className="align-middle">
                                     <button className="btn btn-primary" onClick={() => handleEditClick(newsItem)}>Edit</button>

@@ -49,7 +49,7 @@ const PostNews = () => {
             const newsData = {
                 title: newsTitle,
                 description: descriptionHtml,
-                image: images[0]
+                image: images[0].data_url
             };
             console.log(newsData, "newsData")
             const response = await fetch('http://localhost:5000/news', {
