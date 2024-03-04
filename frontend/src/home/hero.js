@@ -7,9 +7,8 @@ export default function Hero() {
                 <div className="mask" style={{ position: 'absolute', top: 0, bottom: 0, left: 0, right: 0, backgroundColor: 'rgba(0, 0, 0, 0.6)' }}>
                     <div className="d-flex justify-content-center align-items-center h-100">
                         <div className="text-white">
-                            <h1 className="mb-4 display-4 fw-bold text-light">Welcome to Website Name</h1>
-                            <h4 className="mb-4 fs-5 text-light">Your Tagline Here</h4>
-                            <button className="btn btn-primary btn-lg">Explore Now</button>
+                            <h1 className="mb-4 display-4 fw-bold text-light">Welcome to TechWeb</h1>
+                          
                         </div>
                     </div>
                 </div>
