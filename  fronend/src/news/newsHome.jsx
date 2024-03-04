@@ -14,7 +14,7 @@ const NewsHome = () => {
                             <Link to='/news/post-news' className='btn btn-primary btn-lg btn-block'>Post a News</Link>
                         </li>
                         <li className="list-group-item">
-                            <Link to='/news/manage-news' className='btn btn-primary btn-lg btn-block'>Manage News</Link>
+                            <Link to='/news/manage-post' className='btn btn-primary btn-lg btn-block'>Manage Post</Link>
                         </li>
 
                     </ul>

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Link, useNavigate } from "react-router-dom";
 import { useContext } from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -28,6 +29,9 @@ const Navbar=()=>{
       </li>
       <li className="nav-item">
       <Link to='/news' className='nav-link ps-3'>News</Link>
+      </li>
+      <li className="nav-item">
+      <Link to='/news/manage-news' className='nav-link ps-3'>Manage News</Link>
       </li>
       <li className="nav-item dropdown" style={{cursor:'pointer'}}>
       {context.user===null ? 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-const ManageNews = () => {
+const ManagePost = () => {
     const [newsData, setNewsData] = useState([]);
     const [selectedNews, setSelectedNews] = useState(null);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -187,4 +187,4 @@ const ManageNews = () => {
     );
 };
 
-export default ManageNews;
+export default ManagePost;

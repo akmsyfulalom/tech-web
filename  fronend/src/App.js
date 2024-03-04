@@ -18,10 +18,12 @@ import Cheakout from './user/Cheakout';
 import Main from './product/Main';
 import Thankyou from './user/Thankyou';
 import Orderviews from './admin/Orderviews';
-import News from './news';
+import News from './news/news';
 import PostNews from './news/post-news/post-news';
-import ManageNews from './news/manage-news/manage-news';
+
 import SinglePost from './news/single-post';
+import ManagePost from './news/manage-news/manage-post';
+import ManageNews from './news/manage-news';
 
 
 function App() {
@@ -49,8 +51,9 @@ function App() {
           <Route path='/user/Thankyou' element={<Thankyou />} />
           <Route path='/admin/orderviews' element={<Orderviews />} />
           <Route path='/news' element={<News />} />
-          <Route path='/news/post-news' element={<PostNews />} />
           <Route path='/news/manage-news' element={<ManageNews />} />
+          <Route path='/news/post-news' element={<PostNews />} />
+          <Route path='/news/manage-post' element={<ManagePost />} />
           <Route path='/news/:_id' element={<SinglePost />} />
         </Routes>
       </div>
