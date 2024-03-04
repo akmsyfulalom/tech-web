@@ -1,15 +1,21 @@
 
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Editor } from 'react-draft-wysiwyg';
 import { EditorState, convertToRaw } from 'draft-js';
 import '../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import draftToHtml from 'draftjs-to-html';
+import ImageUploadSingle from "../ImageUploadSingle"
+import { ImageContext } from '../../ImageProvider';
+
+
 
 const PostNews = () => {
+    const { images } = useContext(ImageContext)
+    console.log("🚀 ~ PostNews ~ images:", images)
+
     const [editorState, setEditorState] = useState(() => EditorState.createEmpty());
     const [newsTitle, setNewsTitle] = useState('');
-    const [file, setFile] = useState(null);
-    const [fileName, setFileName] = useState('');
+
     const [loading, setLoading] = useState(false);
     const styles = {
         inputField: {
@@ -27,38 +33,25 @@ const PostNews = () => {
         }
     };
 
-    const handleFileChange = (event) => {
-        const selectedFile = event.target.files[0];
-        setFile(selectedFile);
-        setFileName(selectedFile.name);
-    };
 
-    const handleDrop = (event) => {
-        event.preventDefault();
-        const droppedFile = event.dataTransfer.files[0];
-        setFile(droppedFile);
-        setFileName(droppedFile.name);
-    };
 
-    const handleDragOver = (event) => {
-        event.preventDefault();
-    };
 
-    const handleUploadClick = () => {
-        document.getElementById('fileInput').click();
-    };
+
+
+
+
     const handleSubmit = async () => {
         setLoading(true); // Set loading to true when submitting
         try {
             const descriptionHtml = draftToHtml(convertToRaw(editorState.getCurrentContent()));
-            
+
             // Constructing the news object
             const newsData = {
                 title: newsTitle,
                 description: descriptionHtml,
-                image: "https://example.com/spacex-launch.jpg"
+                image: images[0]
             };
-    
+            console.log(newsData, "newsData")
             const response = await fetch('http://localhost:5000/news', {
                 method: 'POST',
                 headers: {
@@ -66,23 +59,23 @@ const PostNews = () => {
                 },
                 body: JSON.stringify(newsData)
             });
-    
+
             if (!response.ok) {
                 throw new Error('Failed to post news data');
             }
-    
+
             console.log('News posted successfully');
-             setNewsTitle('');
-        setEditorState(EditorState.createEmpty());
-        setFile(null);
-        setFileName('');
+            setNewsTitle('');
+            setEditorState(EditorState.createEmpty());
+
+
         } catch (error) {
             console.error('Error posting news data:', error);
         } finally {
             setLoading(false); // Reset loading state
         }
     };
-    
+
 
 
     return (
@@ -105,28 +98,20 @@ const PostNews = () => {
                     <div
                         className="form-group col-lg-12 col-md-12 col-sm-12 mx-auto"
                         style={{ ...styles.inputField, ...styles.dropArea }}
-                        onDrop={handleDrop}
-                        onDragOver={handleDragOver}
-                        onClick={handleUploadClick}
+
                     >
                         <p style={{ fontSize: '18px', marginBottom: '10px' }}>Drop your image or click to upload</p>
-                        <input
-                            type="file"
-                            accept="image/*"
-                            className="form-control-file"
-                            id="fileInput"
-                            onChange={handleFileChange}
-                            style={{ display: 'none' }}
-                        />
-                        <button className="btn btn-primary">Browse</button>
+                        <ImageUploadSingle />
+
                     </div>
 
+
                     {/* File name */}
-                    {fileName && (
+                    {/* {fileName && (
                         <div className="form-group col-lg-12 col-md-12 col-sm-12 mx-auto" style={styles.inputField}>
                             <p style={{ fontSize: '18px' }}>Upload Image: {fileName}</p>
                         </div>
-                    )}
+                    )} */}
                     {/* Description */}
                     <div className="form-group col-lg-12 col-md-12 col-sm-12 mx-auto border border-dark p-2 rounded-2" style={styles.inputField}>
                         <b style={{ fontSize: '18px', paddingLeft: '5px' }}>News description</b>
