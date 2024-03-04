@@ -4,6 +4,8 @@ const News = require('./news.model');
 const createNews = async (req, res) => {
     try {
         const { title, description, image } = req.body;
+        console.log("🚀 ~ createNews ~ title, description, image:", title, description, image)
+        
    
         if (!title || !description || !image) {
             return res.status(400).json({ error: 'All fields are required.' });

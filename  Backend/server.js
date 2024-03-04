@@ -18,15 +18,16 @@ mongoose.connect("mongodb+srv://Arnob:bonrA@techweb.6zzxtnh.mongodb.net/?retryWr
 //     console.log("Success");
 // })
 const corsOptions = {
-    origin: 'http://localhost:3000', // Allow access from this origin
+    origin: 'http://localhost:3000', 
 };
+app.use(bodyParser.json({ limit: '100mb' }));
+app.use(bodyParser.urlencoded({ limit: '100mb', extended: true }));
 app.use(cors(corsOptions));
 app.use(express.json())
 app.use(cors());
 app.use('/jobs', routes)
 app.use('/', routes)
-app.use(bodyParser.json({ limit: '50mb' }));
-app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
+
 
 
 app.use('/images', express.static('images'));
